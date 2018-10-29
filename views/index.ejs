@@ -1,0 +1,25 @@
+<html>
+<head>
+ <title>Redis Todo</title>
+ <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
+</head>
+
+<div class="container mt-4">
+<h1 class="text-center"> <%= title %></h1>
+<form action="/todo/add" method="post">
+<input type="text" name="todo" class="form-control" placeholder="Enter Todo and press Enter">
+</form>
+<form action="/todo/delete" method="post">
+<% todos.forEach((todo) => { %>
+   <div class="lead card bg-light my-4 py-2 pl-4" style="display:inline">
+       <input type="checkbox" name="todos" class="delete" value="<%= todo %>">
+       <span><%= todo %></span>
+    </div>
+    <br><br>
+<% }) %>
+<% if(todos.length >= 1 ){ %>
+    <p class="alert bg-light text-primary">Check todos to remove and click remove to delete todos</p>
+<% } %>
+<input class="btn btn-danger" type="submit" value="remove">
+</form>
+</div>
